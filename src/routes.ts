@@ -210,6 +210,8 @@ router.post('/analyze', upload.single('image'), async (req: Request, res: Respon
         validatedYouTubeUrl || undefined
       ),
       updateTicketStatus(ticketId, 'analyzed'),
+      // Cleanup both original and processed images immediately after analysis
+      imagePath ? fs.unlink(imagePath).catch(err => console.warn('Failed to delete original image:', err)) : Promise.resolve(),
       processedImagePath && processedImagePath !== imagePath 
         ? cleanupProcessedImage(processedImagePath)
         : Promise.resolve()
@@ -220,7 +222,12 @@ router.post('/analyze', upload.single('image'), async (req: Request, res: Respon
   } catch (error) {
     console.error('Analysis error:', error);
     
-    // Cleanup processed image on error too
+    // Cleanup both original and processed images on error
+    if (imagePath) {
+      fs.unlink(imagePath).catch(err => 
+        console.warn('Failed to delete original image on error:', err)
+      );
+    }
     if (processedImagePath && processedImagePath !== imagePath) {
       cleanupProcessedImage(processedImagePath).catch(err => 
         console.warn('Failed to cleanup processed image on error:', err)
