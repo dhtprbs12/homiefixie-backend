@@ -6,7 +6,6 @@ yarn-error.log*
 
 # Environment variables
 .env
-.env.production
 .env.sample
 .env.local
 .env.development.local
