@@ -12,6 +12,14 @@ if (process.env.NODE_ENV === 'production') {
   dotenv.config();
 }
 
+console.log('NODE_ENV:', process.env.NODE_ENV);
+console.log('Database env vars:', {
+  DB_HOST: process.env.DB_HOST,
+  DB_USER: process.env.DB_USER,
+  DB_NAME: process.env.DB_NAME,
+  hasPassword: !!process.env.DB_PASSWORD
+});
+
 const app = express();
 const PORT = process.env.PORT || 4000;
 
