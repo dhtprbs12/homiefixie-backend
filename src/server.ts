@@ -7,10 +7,13 @@ import routes from './routes.js';
 
 // Load environment variables
 if (process.env.NODE_ENV === 'production') {
-  dotenv.config({ path: '.env.production' });
+  dotenv.config({ path: path.resolve(process.cwd(), '.env.production') });
 } else {
   dotenv.config();
 }
+
+console.log('Working directory:', process.cwd());
+console.log('Looking for .env.production at:', path.resolve(process.cwd(), '.env.production'));
 
 console.log('All environment variables:', process.env);
 
