@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+dotenv.config({ path: '../server/.env.production' });
 import path from 'path';
 import { initializeDB } from './db.js';
 import routes from './routes.js';
@@ -12,7 +13,7 @@ import routes from './routes.js';
 //   dotenv.config();
 // }
 
-dotenv.config({ path: '../server/.env.production' });
+
 
 const app = express();
 const PORT = process.env.PORT || 4000;
