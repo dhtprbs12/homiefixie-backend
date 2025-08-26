@@ -6,11 +6,13 @@ import { initializeDB } from './db.js';
 import routes from './routes.js';
 
 // Load environment variables
-if (process.env.RAILWAY_ENVIRONMENT_NAME === 'production') {
-  dotenv.config({ path: '../server/.env.production' });
-} else {
-  dotenv.config();
-}
+// if (process.env.RAILWAY_ENVIRONMENT_NAME === 'production') {
+//   dotenv.config({ path: '../server/.env.production' });
+// } else {
+//   dotenv.config();
+// }
+
+dotenv.config({ path: '../server/.env.production' });
 
 const app = express();
 const PORT = process.env.PORT || 4000;
