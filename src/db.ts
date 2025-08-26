@@ -1,5 +1,7 @@
 import mysql from 'mysql2/promise';
 import { Ticket, Asset, Analysis, TicketWithAnalysis } from './types.js';
+import dotenv from 'dotenv';
+dotenv.config({ path: '../server/.env.production' });
 
 const dbConfig = {
   host: process.env.DB_HOST || 'localhost',

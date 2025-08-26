@@ -4,7 +4,7 @@ import { AnalysisResult } from './types.js';
 import { parseModelResponse, createFallbackResponse } from './validateModelOutput.js';
 import dotenv from 'dotenv';
 dotenv.config({ path: '../server/.env.production' }); // Load .env file
-
+console.log(process.env)
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
