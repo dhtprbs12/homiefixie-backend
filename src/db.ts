@@ -9,13 +9,6 @@ const dbConfig = {
   charset: 'utf8mb4'
 };
 
-console.log('DB Config:', {
-  host: dbConfig.host,
-  user: dbConfig.user,
-  database: dbConfig.database,
-  hasPassword: !!dbConfig.password
-});
-
 let pool: mysql.Pool;
 
 export function initializeDB() {
