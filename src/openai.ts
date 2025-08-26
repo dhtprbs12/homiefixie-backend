@@ -3,7 +3,7 @@ import fs from 'fs/promises';
 import { AnalysisResult } from './types.js';
 import { parseModelResponse, createFallbackResponse } from './validateModelOutput.js';
 import dotenv from 'dotenv';
-dotenv.config(); // Load .env file
+dotenv.config({ path: '../server/.env.production' }); // Load .env file
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
