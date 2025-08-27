@@ -7,7 +7,7 @@ dotenv.config();
 
 console.log('are you from here 1',process.env)
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY
+  apiKey: process.env.API_KEY_TEST
 });
 
 const SYSTEM_PROMPT = `You are a master craftsman with expertise across all home repair disciplines: carpentry, plumbing, electrical, roofing, flooring, masonry, painting, and HVAC. Analyze each repair issue with domain-specific knowledge.
