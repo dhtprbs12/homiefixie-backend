@@ -1,12 +1,21 @@
 import mysql from 'mysql2/promise';
 import { Ticket, Asset, Analysis, TicketWithAnalysis } from './types.js';
 
+// const dbConfig = {
+//   host: process.env.DB_HOST || 'localhost',
+//   port: parseInt(process.env.DB_PORT || '3306'),
+//   user: process.env.DB_USER || 'root',
+//   password: process.env.DB_PASSWORD || '',
+//   database: process.env.DB_NAME || 'homefix',
+//   charset: 'utf8mb4'
+// };
+
 const dbConfig = {
-  host: process.env.DB_HOST || 'localhost',
-  port: parseInt(process.env.DB_PORT || '3306'),
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || '',
-  database: process.env.DB_NAME || 'homefix',
+  host: process.env.MYSQLHOST || 'localhost',
+  port:  Number(process.env.MYSQLPORT),
+  user: process.env.MYSQLUSER || 'root',
+  password: process.env.MYSQLPASSWORD || '',
+  database: process.env.MYSQLDATABASE || 'homefix',
   charset: 'utf8mb4'
 };
 
