@@ -1,8 +1,14 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config();
 import path from 'path';
+
+// Load environment variables
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config();
+} else {
+  dotenv.config({ path: '.env.local' }); // Loads .env for local development
+}
 import { initializeDB } from './db.js';
 import routes from './routes.js';
 
