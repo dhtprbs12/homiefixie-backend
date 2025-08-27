@@ -1,18 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
-dotenv.config({ path: '../server/.env.production' });
+dotenv.config();
 import path from 'path';
 import { initializeDB } from './db.js';
 import routes from './routes.js';
-
-// Load environment variables
-// if (process.env.RAILWAY_ENVIRONMENT_NAME === 'production') {
-//   dotenv.config({ path: '../server/.env.production' });
-// } else {
-//   dotenv.config();
-// }
-
 
 
 const app = express();
