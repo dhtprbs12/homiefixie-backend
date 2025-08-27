@@ -5,8 +5,7 @@ import { parseModelResponse, createFallbackResponse } from './validateModelOutpu
 import dotenv from 'dotenv';
 dotenv.config();
 
-console.log(`DB_HOST: ${process.env.DB_HOST}`)
-console.log(`DB_HOST: ${process.env.OPENAI_API_KEY}`)
+console.log('MYSQLHOST=', process.env.MYSQLHOST);
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
