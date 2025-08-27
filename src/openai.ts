@@ -5,7 +5,8 @@ import { parseModelResponse, createFallbackResponse } from './validateModelOutpu
 import dotenv from 'dotenv';
 dotenv.config();
 
-console.log('are you from here 1',process.env)
+console.log(`DB_HOST: ${process.env.DB_HOST}`)
+console.log(`DB_HOST: ${process.env.OPENAI_API_KEY}`)
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
