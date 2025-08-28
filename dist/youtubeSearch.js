@@ -160,48 +160,28 @@ function extractYouTubeUrlsFast(html) {
             console.log('No YouTube video URLs found in HTML');
             return results;
         }
-        const patterns = [
-            /"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"[^}]*"title":\{"runs":\[\{"text":"([^"]+)"/g,
-            /"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"[^}]*"title":\{"simpleText":"([^"]+)"/g,
-            /"videoRenderer":\{"videoId":"([a-zA-Z0-9_-]{11})"[^}]*"title":\{"accessibility":\{"accessibilityData":\{"label":"([^"]+)"/g,
-            /"videoId":"([a-zA-Z0-9_-]{11})"[^}]*"title":\{"runs":\[\{"text":"([^"]+)"/g,
-            /"videoId":"([a-zA-Z0-9_-]{11})".*?"title"[^}]*"text":"([^"]+)"/g
-        ];
+        const pattern = /"videoId":"([a-zA-Z0-9_-]{11})"[^{}]*"thumbnail":\s*\{(?:[^{}]|\{[^{}]*\})*\}[^{}]*"title":\s*\{\s*"runs":\s*\[\s*\{\s*"text":"([^"]+)"/g;
         const seenVideoIds = new Set();
-        for (let p = 0; p < patterns.length && results.length < 5; p++) {
-            const pattern = patterns[p];
-            if (!pattern)
-                continue;
-            let jsonMatch;
-            pattern.lastIndex = 0;
-            while ((jsonMatch = pattern.exec(html)) !== null && results.length < 5) {
-                const videoId = jsonMatch[1];
-                const title = jsonMatch[2];
-                console.log(`Pattern ${p} matched:`, {
-                    videoId,
-                    title,
-                    fullMatch: jsonMatch[0].substring(0, 200) + '...'
-                });
-                if (videoId && title && !seenVideoIds.has(videoId)) {
-                    seenVideoIds.add(videoId);
-                    const cleanTitle = title
-                        .replace(/\\u0026/g, '&')
-                        .replace(/\\"/g, '"')
-                        .replace(/\\\\/g, '\\')
-                        .replace(/&quot;/g, '"')
-                        .replace(/&amp;/g, '&')
-                        .trim();
-                    if (cleanTitle.length > 15 && isValidYouTubeTitle(cleanTitle)) {
-                        results.push({
-                            url: `https://www.youtube.com/watch?v=${videoId}`,
-                            title: cleanTitle,
-                            channel: 'YouTube'
-                        });
-                    }
+        let jsonMatch;
+        while ((jsonMatch = pattern.exec(html)) !== null && results.length < 5) {
+            const videoId = jsonMatch[1];
+            const title = jsonMatch[2];
+            if (videoId && title && !seenVideoIds.has(videoId)) {
+                seenVideoIds.add(videoId);
+                const cleanTitle = title
+                    .replace(/\\u0026/g, '&')
+                    .replace(/\\"/g, '"')
+                    .replace(/\\\\/g, '\\')
+                    .replace(/&quot;/g, '"')
+                    .replace(/&amp;/g, '&')
+                    .trim();
+                if (cleanTitle.length > 15 && isValidYouTubeTitle(cleanTitle)) {
+                    results.push({
+                        url: `https://www.youtube.com/watch?v=${videoId}`,
+                        title: cleanTitle,
+                        channel: 'YouTube'
+                    });
                 }
-            }
-            if (results.length > 0) {
-                break;
             }
         }
         if (results.length === 0) {

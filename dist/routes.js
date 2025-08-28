@@ -13,6 +13,7 @@ const productImages_js_1 = require("./productImages.js");
 const youtubeValidator_js_1 = require("./youtubeValidator.js");
 const youtubeSearch_js_1 = require("./youtubeSearch.js");
 const imageUtils_js_1 = require("./imageUtils.js");
+const questionGenerator_js_1 = require("./questionGenerator.js");
 function getFallbackYouTubeVideo(description) {
     const desc = description.toLowerCase();
     if (desc.includes('drywall') || desc.includes('wall') || desc.includes('hole') || desc.includes('crack')) {
@@ -150,6 +151,7 @@ router.post('/analyze', upload.single('image'), async (req, res) => {
         Promise.all([
             (0, db_js_1.createAnalysis)(ticketId, analysis.materials || [], analysis.tools || [], analysis.steps || [], analysis.likelihood || undefined, analysis.safety || undefined, validatedYouTubeUrl || undefined),
             (0, db_js_1.updateTicketStatus)(ticketId, 'analyzed'),
+            imagePath ? promises_1.default.unlink(imagePath).catch(err => console.warn('Failed to delete original image:', err)) : Promise.resolve(),
             processedImagePath && processedImagePath !== imagePath
                 ? (0, imageUtils_js_1.cleanupProcessedImage)(processedImagePath)
                 : Promise.resolve()
@@ -157,6 +159,9 @@ router.post('/analyze', upload.single('image'), async (req, res) => {
     }
     catch (error) {
         console.error('Analysis error:', error);
+        if (imagePath) {
+            promises_1.default.unlink(imagePath).catch(err => console.warn('Failed to delete original image on error:', err));
+        }
         if (processedImagePath && processedImagePath !== imagePath) {
             (0, imageUtils_js_1.cleanupProcessedImage)(processedImagePath).catch(err => console.warn('Failed to cleanup processed image on error:', err));
         }
@@ -214,6 +219,29 @@ router.post('/contact', async (req, res) => {
         console.error('Contact form submission error:', error);
         res.status(500).json({
             error: 'Failed to submit your message. Please try again.'
+        });
+    }
+});
+router.post('/generate-questions', async (req, res) => {
+    try {
+        const { description } = req.body;
+        if (!description || typeof description !== 'string' || description.trim().length === 0) {
+            res.status(400).json({
+                error: 'Description is required'
+            });
+            return;
+        }
+        console.log(`Generating questions for: "${description.substring(0, 100)}..."`);
+        const questionSet = await (0, questionGenerator_js_1.generateQuestionsWithAI)(description.trim());
+        res.json({
+            success: true,
+            questionSet
+        });
+    }
+    catch (error) {
+        console.error('Question generation error:', error);
+        res.status(500).json({
+            error: 'Failed to generate follow-up questions'
         });
     }
 });

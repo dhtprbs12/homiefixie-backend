@@ -3,27 +3,35 @@ import fs from 'fs/promises';
 import { AnalysisResult } from './types.js';
 import { parseModelResponse, createFallbackResponse } from './validateModelOutput.js';
 import dotenv from 'dotenv';
-dotenv.config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config();
+} else {
+  dotenv.config({ path: '.env.local' }); // Loads .env for local development
+}
 
-console.log('MYSQLHOST=', process.env.MYSQLHOST);
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-const SYSTEM_PROMPT = `You are a master craftsman with expertise across all home repair disciplines: carpentry, plumbing, electrical, roofing, flooring, masonry, painting, and HVAC. Analyze each repair issue with domain-specific knowledge.
+const SYSTEM_PROMPT = `You are a master craftsman with expertise across all home repair disciplines: carpentry, plumbing, electrical, roofing, flooring, masonry, painting, HVAC, appliances, windows/doors, insulation, exterior/landscaping, and interior finishing. Analyze each repair issue with domain-specific knowledge.
 
 IMPORTANT: Pay special attention to "Additional Details" section if provided - these contain specific answers to follow-up questions that help you give PRECISE recommendations instead of generic ones.
 
 ANALYZE THE CONTEXT to determine repair type, then provide expert guidance:
 
-ROOFING: Specify shingle types, flashing materials, weather considerations, safety equipment, seasonal timing
-FLOORING: Detail subfloor requirements, adhesives/fasteners, acclimation periods, transition strips
-ELECTRICAL: Emphasize safety, code compliance, circuit capacity, proper materials (THHN, Romex, etc.)
-PLUMBING: Specify pipe materials (PEX, copper, PVC), fittings, pressure testing, water shut-off procedures
+ROOFING: Include all roofing components (shingles, underlayment, flashing, gutters), materials, weather considerations, safety equipment, seasonal timing
+FLOORING: Include flooring materials, subfloor requirements, adhesives/fasteners, underlayment, transition strips, acclimation periods
+ELECTRICAL: Include all electrical components (outlets, switches, fixtures, panels), materials (THHN, Romex), safety, code compliance, circuit capacity
+PLUMBING: Include all necessary components (fixtures, appliances, pipes, fittings), materials (PEX, copper, PVC), installation hardware, pressure testing, water shut-off procedures
 PAINTING: Detail surface prep, primer selection, paint types, drying conditions, coverage rates
 MASONRY: Specify mortar types, curing conditions, expansion joints, moisture considerations
-CARPENTRY: Detail wood species, fasteners, joinery methods, moisture content, structural considerations
-HVAC: Specify duct materials, insulation R-values, airflow calculations, filter types
+CARPENTRY: Include lumber/materials, hardware, fasteners, joinery methods, moisture content, structural considerations
+HVAC: Include all HVAC components (units, ducts, vents, filters), materials, insulation R-values, airflow calculations
+APPLIANCES: Include appliance components, replacement parts, installation hardware, electrical/plumbing connections, warranty considerations
+WINDOWS/DOORS: Include frames, glass, weatherstripping, hardware, locks, trim, insulation, security features
+INSULATION: Include insulation materials (fiberglass, foam, cellulose), vapor barriers, air sealing, R-values, installation methods
+EXTERIOR/LANDSCAPING: Include decking materials, concrete, pavers, fencing, drainage, outdoor fixtures, landscaping materials
+INTERIOR FINISHING: Include drywall, trim, moldings, ceiling materials, built-in components, decorative elements
 
 FOR EVERY REPAIR TYPE:
 - MATERIALS: Exact product names, sizes, quantities, coverage areas, brands when relevant, PLUS a brief description of what each material does and why it's needed for this specific repair

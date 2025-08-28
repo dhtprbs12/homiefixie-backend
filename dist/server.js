@@ -7,9 +7,14 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const path_1 = __importDefault(require("path"));
+if (process.env.NODE_ENV === 'production') {
+    dotenv_1.default.config();
+}
+else {
+    dotenv_1.default.config({ path: '.env.local' });
+}
 const db_js_1 = require("./db.js");
 const routes_js_1 = __importDefault(require("./routes.js"));
-dotenv_1.default.config();
 const app = (0, express_1.default)();
 const PORT = process.env.PORT || 4000;
 app.use((0, cors_1.default)({

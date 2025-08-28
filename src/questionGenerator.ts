@@ -1,6 +1,10 @@
 import OpenAI from 'openai';
 import dotenv from 'dotenv';
-dotenv.config();
+if (process.env.NODE_ENV === 'production') {
+  dotenv.config();
+} else {
+  dotenv.config({ path: '.env.local' }); // Loads .env for local development
+}
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY

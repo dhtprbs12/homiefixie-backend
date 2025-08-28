@@ -13,10 +13,11 @@ exports.getAssetsByTicketId = getAssetsByTicketId;
 exports.createContactSubmission = createContactSubmission;
 const promise_1 = __importDefault(require("mysql2/promise"));
 const dbConfig = {
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'homefix',
+    host: process.env.MYSQLHOST || 'localhost',
+    port: Number(process.env.MYSQLPORT),
+    user: process.env.MYSQLUSER || 'root',
+    password: process.env.MYSQLPASSWORD || '',
+    database: process.env.MYSQLDATABASE || 'homefix',
     charset: 'utf8mb4'
 };
 let pool;
