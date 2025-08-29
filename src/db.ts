@@ -26,8 +26,8 @@ export function initializeDB() {
     ...dbConfig,
     waitForConnections: true,
     connectionLimit: 100,
-    queueLimit: 0,
-    connectTimeout: 60000
+    queueLimit: 50,
+    connectTimeout: 60000,
   });
 }
 
