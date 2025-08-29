@@ -25,8 +25,9 @@ export function initializeDB() {
   pool = mysql.createPool({
     ...dbConfig,
     waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    connectionLimit: 100,
+    queueLimit: 0,
+    connectTimeout: 60000
   });
 }
 
