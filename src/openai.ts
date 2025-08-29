@@ -30,7 +30,7 @@ HVAC: Include all HVAC components (units, ducts, vents, filters), materials, ins
 APPLIANCES: Include appliance components, replacement parts, installation hardware, electrical/plumbing connections, warranty considerations
 WINDOWS/DOORS: Include frames, glass, weatherstripping, hardware, locks, trim, insulation, security features
 INSULATION: Include insulation materials (fiberglass, foam, cellulose), vapor barriers, air sealing, R-values, installation methods
-EXTERIOR/LANDSCAPING: Include decking materials, concrete, pavers, fencing, drainage, outdoor fixtures, landscaping materials
+EXTERIOR/LANDSCAPING: Include decking materials, concrete, pavers, fencing, drainage, outdoor fixtures, landscaping materials, landscape fabric, edging materials, fasteners (landscape staples, deck screws, anchor bolts)
 INTERIOR FINISHING: Include drywall, trim, moldings, ceiling materials, built-in components, decorative elements
 
 CRITICAL - REPLACEMENT SCENARIOS: When the task involves REPLACING a component, you MUST include ALL related parts typically needed:
@@ -52,6 +52,7 @@ CEILING FAN REPLACEMENT → Include: fan unit, electrical box (if upgrade needed
 FENCE REPLACEMENT → Include: fence panels/pickets, posts, post caps, hinges (for gates), fasteners, concrete (for posts), stain/sealant
 GUTTER REPLACEMENT → Include: gutter sections, downspouts, brackets/hangers, end caps, connectors, sealants, fasteners
 INSULATION REPLACEMENT → Include: insulation material, vapor barrier, air sealing materials, protective equipment, fasteners/staples
+GARAGE DOOR REPLACEMENT → Include: door panels/unit, tracks, springs (torsion/extension), cables, brackets, rollers, weather stripping, opener (if motorized), remote controls, safety sensors
 
 REMEMBER: "Replace" means the old component is removed and ALL connection/mounting points need attention!
 
@@ -88,6 +89,9 @@ ELECTRICAL UPGRADE → Include: new panel, circuits, outlets, switches, GFCI pro
 INSULATION UPGRADE → Include: insulation material, air sealing, vapor barriers, ventilation improvements, energy audit materials
 SECURITY UPGRADE → Include: locks, cameras, sensors, lighting, timers, monitoring equipment, signage
 ACCESSIBILITY UPGRADE → Include: grab bars, ramps, wider doors, lever handles, raised toilets, non-slip materials
+ENERGY EFFICIENCY UPGRADE → Include: weatherstripping, caulk, storm windows/doors, programmable thermostats, LED lighting, insulation upgrades, duct sealing materials
+OUTDOOR LIGHTING → Include: fixtures, LED bulbs, transformers (low voltage), wire, conduit, junction boxes, timers, photocells, mounting hardware, GFCI protection
+STORAGE SOLUTIONS → Include: shelving units, brackets, anchors, bins, closet systems, garage organization, hooks, rails, mounting hardware
 
 EMERGENCY/DAMAGE SCENARIOS: For urgent repairs, include immediate AND permanent solutions:
 
@@ -96,14 +100,20 @@ STORM DAMAGE → Include: tarps/temporary covers, permanent repair materials, st
 POWER OUTAGE PREP → Include: generators, extension cords, surge protectors, flashlights, batteries, emergency supplies
 FROZEN PIPES → Include: pipe insulation, heat cables, repair materials, shut-off tools, temporary heating
 PEST INFESTATION → Include: traps, sealants, exclusion materials, cleaning supplies, professional consultation info
+FOUNDATION REPAIRS → Include: hydraulic cement, epoxy injections, waterproof membranes, drainage materials, crack monitors, underpinning materials (professional)
+OUTDOOR STRUCTURES → Include: lumber, fasteners, concrete footings, roofing materials, hardware, permits, weatherproofing, electrical (if needed)
 
 LANDSCAPING/EXTERIOR SCENARIOS: For outdoor improvements, include ALL site work materials:
 
-DRAINAGE ISSUES → Include: drain pipes, gravel, fabric, catch basins, grading tools, possibly professional consultation
-CONCRETE WORK → Include: concrete, forms, reinforcement, tools, sealers, expansion materials, curing compounds
-GARDEN INSTALLATION → Include: soil amendments, plants, mulch, irrigation materials, tools, fertilizers, pest control
-FENCE INSTALLATION → Include: posts, panels, hardware, concrete, tools, permits (if required), stain/preservation
-DRIVEWAY REPAIR → Include: crack fillers, sealers, patches, cleaning materials, possibly professional equipment rental
+DRAINAGE ISSUES → Include: drain pipes, gravel, fabric, catch basins, grading tools, pipe connectors, drainage grates, possibly professional consultation
+CONCRETE WORK → Include: concrete, forms, reinforcement (rebar, mesh), tools, sealers, expansion materials, curing compounds, anchor bolts, form release agents
+GARDEN INSTALLATION → Include: soil amendments, plants, mulch, irrigation materials (drip lines, emitters, timers), tools, fertilizers, pest control, landscape fabric, edging stakes
+FENCE INSTALLATION → Include: posts, panels, hardware (hinges, latches, brackets), concrete, tools, permits (if required), stain/preservation, post caps, gate hardware
+DRIVEWAY REPAIR → Include: crack fillers, sealers, patches, cleaning materials, possibly professional equipment rental, expansion joint materials
+ARTIFICIAL TURF → Include: turf material, landscape staples/turf nails (6"), base materials (sand, decomposed granite), seaming tape, infill material, edge restraints, compaction tools
+SPRINKLER SYSTEM → Include: sprinkler heads, pipes (PVC/polyethylene), fittings, valves, timers/controllers, wire, valve boxes, backflow preventers, pressure regulators
+POOL/SPA MAINTENANCE → Include: chemicals (chlorine, pH adjusters), filters, pumps, skimmers, cleaning equipment, test kits, heater components, covers, safety equipment
+GARAGE DOOR REPAIR → Include: springs, cables, rollers, tracks, hinges, weather stripping, opener parts (belts, chains, gears), remote batteries, safety sensors
 
 SPECIALTY SYSTEMS: For complex home systems, include ALL related components:
 
@@ -112,12 +122,18 @@ SOLAR INSTALLATION → Include: panels, inverters, mounting systems, electrical 
 WHOLE HOUSE GENERATOR → Include: generator, transfer switch, gas/electrical connections, permits, professional installation
 WATER TREATMENT → Include: filters, softeners, UV systems, plumbing connections, maintenance supplies, water testing
 HOME THEATER → Include: equipment, wiring, mounting, acoustic treatments, lighting controls, universal remotes
+CHIMNEY/FIREPLACE → Include: flue liner, damper, chimney cap, spark arrestor, cleaning brushes, mortar, firebrick, glass doors, screens, gas logs (if applicable)
+SEPTIC SYSTEM → Include: pumps, alarms, filters, risers, lids, baffles, distribution boxes, effluent filters, professional inspection/pumping services
+WELL WATER SYSTEM → Include: well pump, pressure tank, pressure switch, check valves, pitless adapter, well cap, water treatment components, electrical connections
+BASEMENT WATERPROOFING → Include: sealants, drainage systems, sump pumps, vapor barriers, insulation, dehumidifiers, foundation crack repair materials
+ATTIC VENTILATION → Include: ridge vents, soffit vents, exhaust fans, intake vents, vent chutes, insulation baffles, thermostats, screening
 
 FOR EVERY REPAIR TYPE:
 - MATERIALS: Exact product names, sizes, quantities, coverage areas, brands when relevant, PLUS a brief description of what each material does and why it's needed for this specific repair
   * Use Additional Details to choose PRECISE materials (e.g., if crack width is "Less than 1/4 inch" → flexible caulk, if "More than 1/2 inch" → mortar/concrete patch)
   * Consider location/exposure details (e.g., "water exposure: Yes" → waterproof materials, "exterior" → weather-resistant)
   * For REPLACEMENTS: Always include the main component PLUS all associated installation/connection components
+  * ALWAYS INCLUDE FASTENERS/HARDWARE: screws, nails, bolts, brackets, anchors, staples, clips, ties, adhesives - specify type, size, material, quantity
 - TOOLS: Specific purpose for each tool in this exact repair, PLUS a description of how to use it properly and any technique tips
 - STEPS: Detailed sequence with measurements, timing, quality checkpoints
   * Modify steps based on Additional Details (e.g., "old caulk: Lots of old, peeling caulk" → add removal steps)
