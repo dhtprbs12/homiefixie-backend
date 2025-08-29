@@ -481,12 +481,189 @@ async function searchGeneralHardware(query: string): Promise<string | null> {
   }
 }
 
+// Get alternative search terms for common house components
+function getAlternativeTerms(itemLower: string): string[] {
+  const alternativeMap: Record<string, string[]> = {
+    // Plumbing - Comprehensive
+    'toilet flange': ['closet flange', 'floor flange', 'toilet floor flange', 'wax ring flange'],
+    'toilet bolts': ['closet bolts', 'floor bolts', 'toilet floor bolts', 'johnny bolts'],
+    'wax ring': ['toilet wax seal', 'toilet gasket', 'toilet floor seal'],
+    'fill valve': ['ballcock', 'toilet fill valve', 'water inlet valve'],
+    'flush valve': ['toilet flush valve', 'tank drain valve', 'flush assembly'],
+    'toilet chain': ['flapper chain', 'toilet lift chain', 'flush chain'],
+    'toilet handle': ['toilet lever', 'flush handle', 'toilet trip lever'],
+    'garbage disposal': ['food waste disposer', 'waste disposal unit', 'kitchen disposer'],
+    'faucet': ['tap', 'spigot', 'water valve', 'sink faucet'],
+    'shut off valve': ['stop valve', 'water shutoff', 'angle valve', 'supply valve'],
+    'water heater': ['hot water heater', 'water tank', 'water heating system', 'hot water tank'],
+    'supply line': ['water supply line', 'braided line', 'flex line', 'connector hose'],
+    'p trap': ['p-trap', 'sink trap', 'drain trap', 'plumbing trap'],
+    'shower head': ['showerhead', 'shower spray', 'rain shower head'],
+    'shower valve': ['shower mixer', 'thermostatic valve', 'shower control'],
+    'bathtub': ['tub', 'bath tub', 'soaking tub', 'bathroom tub'],
+    'vanity': ['bathroom vanity', 'sink cabinet', 'bathroom cabinet'],
+    'medicine cabinet': ['bathroom mirror cabinet', 'mirror cabinet', 'wall cabinet'],
+    'sump pump': ['basement pump', 'water pump', 'drainage pump'],
+    'well pump': ['water pump', 'submersible pump', 'jet pump'],
+    'septic tank': ['septic system', 'waste treatment tank', 'sewage tank'],
+    'water filter': ['water purifier', 'filtration system', 'water treatment'],
+    
+    // Electrical - Comprehensive  
+    'circuit breaker': ['electrical breaker', 'breaker switch', 'electrical panel breaker', 'fuse'],
+    'junction box': ['electrical box', 'outlet box', 'switch box', 'wire box'],
+    'outlet': ['electrical outlet', 'receptacle', 'wall outlet', 'power outlet'],
+    'switch': ['light switch', 'wall switch', 'electrical switch', 'toggle switch'],
+    'wire nuts': ['wire connectors', 'twist caps', 'electrical connectors'],
+    'electrical panel': ['breaker panel', 'fuse box', 'electrical box', 'service panel'],
+    'conduit': ['electrical conduit', 'wire conduit', 'cable conduit', 'raceway'],
+    'ceiling fan': ['fan', 'overhead fan', 'room fan', 'electric fan'],
+    'light fixture': ['light', 'lighting fixture', 'ceiling light', 'lamp fixture'],
+    'smoke detector': ['smoke alarm', 'fire detector', 'smoke sensor', 'fire alarm'],
+    'carbon monoxide detector': ['CO detector', 'carbon monoxide alarm', 'CO alarm'],
+    'thermostat': ['heating control', 'temperature control', 'HVAC control'],
+    'gfci outlet': ['ground fault outlet', 'gfi outlet', 'safety outlet'],
+    'dimmer switch': ['light dimmer', 'dimming switch', 'variable switch'],
+    
+    // HVAC - Comprehensive
+    'furnace': ['heating system', 'heater', 'gas furnace', 'heating unit'],
+    'air conditioner': ['AC unit', 'cooling system', 'central air', 'air conditioning'],
+    'heat pump': ['heating cooling system', 'electric heat pump', 'HVAC heat pump'],
+    'ductwork': ['air ducts', 'heating ducts', 'ventilation ducts', 'duct system'],
+    'air filter': ['furnace filter', 'HVAC filter', 'heating filter', 'air conditioning filter'],
+    'range hood': ['exhaust hood', 'kitchen hood', 'cooking hood', 'vent hood'],
+    'bathroom fan': ['exhaust fan', 'vent fan', 'ventilation fan', 'ceiling fan'],
+    'attic fan': ['roof fan', 'exhaust fan', 'ventilation fan', 'gable fan'],
+    
+    // Drywall & Interior - Comprehensive
+    'drywall': ['sheetrock', 'gypsum board', 'plasterboard', 'wallboard'],
+    'joint compound': ['drywall mud', 'spackling compound', 'wall compound'],
+    'mesh tape': ['drywall tape', 'fiberglass tape', 'self-adhesive tape'],
+    'corner bead': ['drywall corner', 'metal corner', 'corner trim'],
+    'spackling': ['wall filler', 'hole filler', 'wall repair compound'],
+    'primer': ['wall primer', 'paint primer', 'sealer primer', 'undercoat'],
+    'caulk': ['caulking', 'sealant', 'bathroom caulk', 'silicone sealant'],
+    
+    // Doors & Windows - Comprehensive
+    'door knob': ['door handle', 'door lever', 'door grip', 'entry handle'],
+    'deadbolt': ['door lock', 'security lock', 'door deadbolt', 'keyed lock'],
+    'door hinge': ['hinge', 'door hardware', 'butt hinge', 'door pivot'],
+    'door frame': ['door jamb', 'door casing', 'door trim', 'door opening'],
+    'weatherstrip': ['weather stripping', 'door seal', 'window seal', 'draft stopper'],
+    'door sweep': ['door bottom seal', 'door draft stop', 'threshold seal'],
+    'storm door': ['screen door', 'outer door', 'security door'],
+    'window': ['windows', 'window pane', 'window glass', 'window unit'],
+    'window screen': ['screen door', 'mesh screen', 'window mesh', 'insect screen'],
+    'window frame': ['window sash', 'window casing', 'window trim'],
+    'window lock': ['sash lock', 'window latch', 'window security'],
+    
+    // Flooring - Comprehensive
+    'hardwood flooring': ['wood flooring', 'hardwood', 'wood floors', 'solid wood'],
+    'laminate flooring': ['laminate', 'floating floor', 'click flooring'],
+    'vinyl flooring': ['LVT', 'luxury vinyl', 'resilient flooring', 'vinyl plank'],
+    'tile': ['ceramic tile', 'porcelain tile', 'floor tile', 'wall tile'],
+    'grout': ['tile grout', 'floor grout', 'wall grout', 'grout sealer'],
+    'underlayment': ['floor underlayment', 'subfloor', 'flooring pad'],
+    'transition strip': ['threshold', 'floor transition', 'trim strip'],
+    'baseboard': ['base trim', 'floor trim', 'wall base', 'quarter round'],
+    
+    // Roofing - Comprehensive
+    'shingles': ['roof shingles', 'asphalt shingles', 'roofing shingles'],
+    'flashing': ['roof flashing', 'metal flashing', 'step flashing', 'valley flashing'],
+    'gutter': ['gutters', 'rain gutter', 'gutter system', 'drainage gutter'],
+    'downspout': ['downspouts', 'drain spout', 'gutter downspout'],
+    'roof cement': ['roofing cement', 'roof sealant', 'roof tar', 'roof patch'],
+    'ridge vent': ['roof vent', 'ridge ventilation', 'roof ridge vent'],
+    'soffit': ['roof soffit', 'eave soffit', 'ventilation soffit'],
+    'fascia': ['fascia board', 'roof fascia', 'gutter board'],
+    'chimney cap': ['chimney cover', 'flue cap', 'chimney top'],
+    
+    // Exterior & Landscaping - Comprehensive
+    'siding': ['house siding', 'exterior siding', 'wall siding', 'vinyl siding'],
+    'deck board': ['decking', 'deck plank', 'porch board', 'deck lumber'],
+    'deck railing': ['deck rail', 'porch railing', 'deck baluster'],
+    'fence post': ['fence pole', 'post', 'fence support', 'fence column'],
+    'fence panel': ['fencing', 'fence section', 'privacy fence'],
+    'fence gate': ['garden gate', 'yard gate', 'fence door'],
+    'retaining wall': ['garden wall', 'landscape wall', 'stone wall', 'block wall'],
+    'french drain': ['drainage pipe', 'perforated drain', 'yard drain', 'foundation drain'],
+    'driveway': ['concrete driveway', 'asphalt driveway', 'paved driveway'],
+    'walkway': ['sidewalk', 'path', 'concrete walkway', 'garden path'],
+    'patio': ['concrete patio', 'stone patio', 'outdoor patio', 'paver patio'],
+    'mulch': ['bark mulch', 'wood mulch', 'landscape mulch', 'garden mulch'],
+    'gravel': ['stone', 'pea gravel', 'crushed stone', 'decorative stone'],
+    
+    // Kitchen & Bathroom - Comprehensive
+    'cabinet': ['kitchen cabinet', 'bathroom cabinet', 'storage cabinet'],
+    'countertop': ['kitchen counter', 'bathroom counter', 'work surface'],
+    'backsplash': ['tile backsplash', 'kitchen backsplash', 'wall tile'],
+    'sink': ['kitchen sink', 'bathroom sink', 'wash basin', 'lavatory'],
+    'shower door': ['shower enclosure', 'glass shower door', 'shower screen'],
+    'towel bar': ['towel rack', 'towel holder', 'bathroom hardware'],
+    'grab bar': ['safety bar', 'handicap bar', 'bathroom safety'],
+    'toilet paper holder': ['TP holder', 'tissue holder', 'bathroom hardware'],
+    
+    // Tools - Comprehensive
+    'drill': ['power drill', 'electric drill', 'cordless drill', 'drilling tool'],
+    'saw': ['power saw', 'hand saw', 'cutting tool', 'wood saw'],
+    'hammer': ['claw hammer', 'framing hammer', 'construction hammer'],
+    'screwdriver': ['driver', 'screw driver', 'phillips screwdriver'],
+    'wrench': ['spanner', 'adjustable wrench', 'pipe wrench'],
+    'pliers': ['grips', 'needle nose pliers', 'cutting pliers'],
+    'level': ['spirit level', 'bubble level', 'construction level'],
+    'tape measure': ['measuring tape', 'ruler', 'construction tape'],
+    'utility knife': ['box cutter', 'razor knife', 'cutting knife'],
+    
+    // Safety & Protection - Comprehensive
+    'safety glasses': ['safety goggles', 'eye protection', 'protective glasses'],
+    'work gloves': ['safety gloves', 'construction gloves', 'protective gloves'],
+    'hard hat': ['safety helmet', 'construction helmet', 'protective helmet'],
+    'dust mask': ['respirator', 'face mask', 'breathing protection'],
+    'extension cord': ['power cord', 'electrical cord', 'outdoor cord'],
+    'ladder': ['step ladder', 'extension ladder', 'aluminum ladder'],
+    
+    // Fasteners & Hardware - Comprehensive
+    'screws': ['wood screws', 'metal screws', 'fasteners', 'construction screws'],
+    'nails': ['framing nails', 'finish nails', 'construction nails'],
+    'bolts': ['hex bolts', 'carriage bolts', 'machine bolts', 'lag bolts'],
+    'anchors': ['wall anchors', 'drywall anchors', 'toggle bolts', 'molly bolts'],
+    'hinges': ['door hinges', 'cabinet hinges', 'hardware hinges'],
+    'handles': ['door handles', 'cabinet handles', 'drawer pulls'],
+    'locks': ['door locks', 'security locks', 'keyed locks']
+  };
+  
+  const alternatives: string[] = [];
+  for (const [key, values] of Object.entries(alternativeMap)) {
+    if (itemLower.includes(key) || key.includes(itemLower)) {
+      alternatives.push(...values);
+    }
+  }
+  return alternatives;
+}
+
+// Extract core terms by removing common modifiers
+function getCoreTerm(itemName: string): string {
+  const modifiersToRemove = [
+    'replacement', 'new', 'old', 'broken', 'repair', 'install', 'installation',
+    'commercial', 'residential', 'heavy duty', 'professional', 'standard',
+    'adjustable', 'universal', 'compatible', 'brass', 'steel', 'plastic',
+    'white', 'black', 'chrome', 'brushed', 'stainless'
+  ];
+  
+  let coreTerm = itemName.toLowerCase();
+  for (const modifier of modifiersToRemove) {
+    coreTerm = coreTerm.replace(new RegExp(`\\b${modifier}\\b`, 'gi'), '').trim();
+  }
+  
+  // Remove extra spaces
+  coreTerm = coreTerm.replace(/\s+/g, ' ').trim();
+  
+  return coreTerm || itemName; // Return original if we removed everything
+}
+
 // Enhanced product search with direct store access
 async function getProductInfo(itemName: string): Promise<{image_url: string | null, product_url?: string, store_name?: string}> {
   console.log(`Getting product info for: "${itemName}"`);
   
-  // Make search query more specific for certain items
-  let searchQuery = itemName;
   const itemLower = itemName.toLowerCase();
   
   // Category-specific search enhancements
@@ -840,39 +1017,64 @@ async function getProductInfo(itemName: string): Promise<{image_url: string | nu
     'laundry organizer': 'shelf cabinet iroring board storage'
   };
   
-  // Find the best enhancement for this item - prioritize longer, more specific matches first
+  // Comprehensive multi-tier search strategy
+  const searchStrategies = [];
+  
+  // Strategy 1: Exact match enhancement (prioritize longer, more specific matches)
   const sortedEnhancements = Object.entries(searchEnhancements)
-    .sort(([a], [b]) => b.length - a.length); // Sort by keyword length descending
+    .sort(([a], [b]) => b.length - a.length);
     
   for (const [keyword, enhancement] of sortedEnhancements) {
     if (itemLower.includes(keyword)) {
-      searchQuery = `${itemName} ${enhancement}`;
+      searchStrategies.push(`${itemName} ${enhancement}`);
       break;
     }
   }
   
-  console.log(`Using search query: "${searchQuery}"`);
-  
-  // Try Home Depot direct search first
-  const homeDepotProduct = await searchHomeDepotDirect(searchQuery);
-  if (homeDepotProduct) {
-    console.log(`Found Home Depot product for "${itemName}":`, homeDepotProduct);
-    return {
-      image_url: homeDepotProduct.image_url,
-      product_url: homeDepotProduct.product_url,
-      store_name: homeDepotProduct.store
-    };
+  // Strategy 2: Alternative terminology (common aliases)
+  const alternatives = getAlternativeTerms(itemLower);
+  if (alternatives.length > 0) {
+    searchStrategies.push(...alternatives);
   }
   
-  // Try Lowe's direct search
-  const lowesProduct = await searchLowesDirect(searchQuery);
-  if (lowesProduct) {
-    console.log(`Found Lowe's product for "${itemName}":`, lowesProduct);
-    return {
-      image_url: lowesProduct.image_url,
-      product_url: lowesProduct.product_url,
-      store_name: lowesProduct.store
-    };
+  // Strategy 3: Simplified search (remove modifiers, keep core terms)
+  const coreTerms = getCoreTerm(itemName);
+  if (coreTerms !== itemName) {
+    searchStrategies.push(coreTerms);
+  }
+  
+  // Strategy 4: Original search as final fallback
+  if (!searchStrategies.includes(itemName)) {
+    searchStrategies.push(itemName);
+  }
+  
+  console.log(`Search strategies for "${itemName}":`, searchStrategies);
+  
+  // Try each strategy across all search methods
+  for (const strategy of searchStrategies) {
+    console.log(`Trying search strategy: "${strategy}"`);
+    
+    // Try Home Depot first
+    const homeDepotProduct = await searchHomeDepotDirect(strategy);
+    if (homeDepotProduct) {
+      console.log(`Found Home Depot product with strategy "${strategy}":`, homeDepotProduct);
+      return {
+        image_url: homeDepotProduct.image_url,
+        product_url: homeDepotProduct.product_url,
+        store_name: homeDepotProduct.store
+      };
+    }
+    
+    // Try Lowe's
+    const lowesProduct = await searchLowesDirect(strategy);
+    if (lowesProduct) {
+      console.log(`Found Lowe's product with strategy "${strategy}":`, lowesProduct);
+      return {
+        image_url: lowesProduct.image_url,
+        product_url: lowesProduct.product_url,
+        store_name: lowesProduct.store
+      };
+    }
   }
   
   // Try general hardware search as fallback

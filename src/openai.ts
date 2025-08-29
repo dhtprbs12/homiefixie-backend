@@ -33,10 +33,91 @@ INSULATION: Include insulation materials (fiberglass, foam, cellulose), vapor ba
 EXTERIOR/LANDSCAPING: Include decking materials, concrete, pavers, fencing, drainage, outdoor fixtures, landscaping materials
 INTERIOR FINISHING: Include drywall, trim, moldings, ceiling materials, built-in components, decorative elements
 
+CRITICAL - REPLACEMENT SCENARIOS: When the task involves REPLACING a component, you MUST include ALL related parts typically needed:
+
+TOILET REPLACEMENT → Include: toilet, toilet flange (closet flange), wax ring, toilet bolts, supply line, shut-off valve, toilet seat (if not included)
+FAUCET REPLACEMENT → Include: faucet, supply lines, shut-off valves, plumber's putty/sealant, mounting hardware
+DOOR REPLACEMENT → Include: door, hinges, door handle/knob, weatherstripping, door sweep, screws/fasteners, possibly door frame components  
+WINDOW REPLACEMENT → Include: window unit, weatherstripping, caulk, shims, trim/casing, insulation, flashing (if exterior)
+FLOORING REPLACEMENT → Include: flooring material, underlayment, transition strips, baseboards/quarter round, adhesive/fasteners
+ELECTRICAL FIXTURE REPLACEMENT → Include: fixture, wire nuts, electrical box (if needed), circuit breaker (if upgrade), mounting hardware
+APPLIANCE REPLACEMENT → Include: appliance, supply lines (water/gas), electrical connections, mounting/installation hardware, vent components (if applicable)
+DECK BOARD REPLACEMENT → Include: deck boards, screws/fasteners, joist repair materials (if needed), stain/sealant
+ROOF COMPONENT REPLACEMENT → Include: main component plus flashing, sealants, fasteners, underlayment (if applicable)
+SIDING REPLACEMENT → Include: siding panels, house wrap/vapor barrier, fasteners, trim pieces, caulk/sealants, flashing
+CABINET REPLACEMENT → Include: cabinets, hinges, handles/knobs, mounting screws, shims, possibly countertop support
+WATER HEATER REPLACEMENT → Include: water heater, supply lines, gas line components (if gas), electrical connections, temperature/pressure relief valve, drain pan
+GARBAGE DISPOSAL REPLACEMENT → Include: disposal unit, mounting assembly, electrical connections, discharge tube, mounting screws
+CEILING FAN REPLACEMENT → Include: fan unit, electrical box (if upgrade needed), wire nuts, mounting hardware, possibly wall switch
+FENCE REPLACEMENT → Include: fence panels/pickets, posts, post caps, hinges (for gates), fasteners, concrete (for posts), stain/sealant
+GUTTER REPLACEMENT → Include: gutter sections, downspouts, brackets/hangers, end caps, connectors, sealants, fasteners
+INSULATION REPLACEMENT → Include: insulation material, vapor barrier, air sealing materials, protective equipment, fasteners/staples
+
+REMEMBER: "Replace" means the old component is removed and ALL connection/mounting points need attention!
+
+COMPREHENSIVE REPAIR SCENARIOS: For repair tasks, include ALL materials needed to properly fix the issue:
+
+LEAK REPAIRS → Include: sealants, patches, clamps, replacement gaskets/washers, pipe repair materials, cleanup materials
+CRACK REPAIRS → Include: fillers (appropriate to material), mesh/tape (if needed), primers, paints/finishes, smoothing tools
+CLOG REPAIRS → Include: drain cleaners, snakes/augers, plungers, replacement traps/pipes (if damaged), protective equipment
+ELECTRICAL ISSUES → Include: replacement wires, wire nuts, electrical tape, circuit testers, possibly new breakers/outlets
+SQUEAKY/STICKING → Include: lubricants, adjusters, replacement hinges/hardware, cleaning materials, alignment tools
+
+INSTALLATION SCENARIOS: For new installations, include ALL components from start to finish:
+
+NEW OUTLET/SWITCH → Include: device, electrical box, wire, conduit (if needed), wire nuts, cover plate, circuit protection
+NEW LIGHT FIXTURE → Include: fixture, electrical box, mounting hardware, wire nuts, switch (if needed), bulbs
+NEW FAUCET → Include: faucet, supply lines, shut-off valves, mounting hardware, sealants, possibly new drain assembly  
+NEW APPLIANCE → Include: appliance, supply connections (water/gas/electric), mounting hardware, venting (if needed), permits/codes
+NEW FLOORING → Include: flooring, underlayment, transitions, trim, fasteners, moisture barriers, tools rental
+NEW DECK → Include: lumber, fasteners, post anchors, flashing, stain/sealant, railings, permits/inspections
+
+MAINTENANCE SCENARIOS: For preventive maintenance, include ALL supplies for complete service:
+
+HVAC MAINTENANCE → Include: filters, belts, lubricants, cleaning supplies, refrigerant (pro only), thermostat batteries
+GUTTER CLEANING → Include: cleaning tools, sealants for repairs, hangers for loose sections, safety equipment
+PRESSURE WASHING → Include: detergents, surface cleaners, protective coverings, possibly repair materials for damage found
+WINTERIZATION → Include: insulation materials, weather stripping, pipe insulation, caulk, storm windows/doors
+SPRING PREPARATION → Include: cleaning supplies, fertilizers, pest control, touch-up paints, equipment servicing materials
+
+UPGRADE SCENARIOS: For improvement/modernization projects, include ALL components for complete upgrade:
+
+BATHROOM UPGRADE → Include: new fixtures, vanity, mirror, lighting, ventilation, waterproofing, tiles, trim, permits
+KITCHEN UPGRADE → Include: cabinets, countertops, backsplash, appliances, plumbing updates, electrical updates, lighting
+ELECTRICAL UPGRADE → Include: new panel, circuits, outlets, switches, GFCI protection, surge protection, permits/inspection  
+INSULATION UPGRADE → Include: insulation material, air sealing, vapor barriers, ventilation improvements, energy audit materials
+SECURITY UPGRADE → Include: locks, cameras, sensors, lighting, timers, monitoring equipment, signage
+ACCESSIBILITY UPGRADE → Include: grab bars, ramps, wider doors, lever handles, raised toilets, non-slip materials
+
+EMERGENCY/DAMAGE SCENARIOS: For urgent repairs, include immediate AND permanent solutions:
+
+WATER DAMAGE → Include: water removal, dehumidifiers, fans, antimicrobial treatments, replacement materials, vapor barriers
+STORM DAMAGE → Include: tarps/temporary covers, permanent repair materials, structural reinforcements, weatherproofing
+POWER OUTAGE PREP → Include: generators, extension cords, surge protectors, flashlights, batteries, emergency supplies
+FROZEN PIPES → Include: pipe insulation, heat cables, repair materials, shut-off tools, temporary heating
+PEST INFESTATION → Include: traps, sealants, exclusion materials, cleaning supplies, professional consultation info
+
+LANDSCAPING/EXTERIOR SCENARIOS: For outdoor improvements, include ALL site work materials:
+
+DRAINAGE ISSUES → Include: drain pipes, gravel, fabric, catch basins, grading tools, possibly professional consultation
+CONCRETE WORK → Include: concrete, forms, reinforcement, tools, sealers, expansion materials, curing compounds
+GARDEN INSTALLATION → Include: soil amendments, plants, mulch, irrigation materials, tools, fertilizers, pest control
+FENCE INSTALLATION → Include: posts, panels, hardware, concrete, tools, permits (if required), stain/preservation
+DRIVEWAY REPAIR → Include: crack fillers, sealers, patches, cleaning materials, possibly professional equipment rental
+
+SPECIALTY SYSTEMS: For complex home systems, include ALL related components:
+
+SMART HOME → Include: devices, wiring, network equipment, mounting hardware, apps/software setup, integration components
+SOLAR INSTALLATION → Include: panels, inverters, mounting systems, electrical components, permits, professional consultation
+WHOLE HOUSE GENERATOR → Include: generator, transfer switch, gas/electrical connections, permits, professional installation
+WATER TREATMENT → Include: filters, softeners, UV systems, plumbing connections, maintenance supplies, water testing
+HOME THEATER → Include: equipment, wiring, mounting, acoustic treatments, lighting controls, universal remotes
+
 FOR EVERY REPAIR TYPE:
 - MATERIALS: Exact product names, sizes, quantities, coverage areas, brands when relevant, PLUS a brief description of what each material does and why it's needed for this specific repair
   * Use Additional Details to choose PRECISE materials (e.g., if crack width is "Less than 1/4 inch" → flexible caulk, if "More than 1/2 inch" → mortar/concrete patch)
   * Consider location/exposure details (e.g., "water exposure: Yes" → waterproof materials, "exterior" → weather-resistant)
+  * For REPLACEMENTS: Always include the main component PLUS all associated installation/connection components
 - TOOLS: Specific purpose for each tool in this exact repair, PLUS a description of how to use it properly and any technique tips
 - STEPS: Detailed sequence with measurements, timing, quality checkpoints
   * Modify steps based on Additional Details (e.g., "old caulk: Lots of old, peeling caulk" → add removal steps)
